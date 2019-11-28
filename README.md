@@ -2,10 +2,7 @@
 
 ##COMPUTATIONAL PHYSICS PROJECT 3
 
-This is a computational project in FYS-3150/4150 at UIO. In this project, we test the efficacy of the Markov Chain Monte Carlo method Metropolis algorithm by computing the solutions for the Ising model of a ferromagnetic material. The program will calculate and print the numerical result of the methods used.
-
-The program will print in the console the estimated values, temperature and number of Monte Carlo Cycles.
-The number of Monte Carlo cycles is inbuilt and cannot be change by the user unless it is changed directly from the source code. Be careful when indicating MC, since the time of ths program increases quite rapidly.
+This is a computational project in FYS-3150/4150 at UIO. In this project we will look at a model of the solar system using Velocity Verlet. 
 
 
 ## Getting Started
