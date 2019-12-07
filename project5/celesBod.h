@@ -19,6 +19,7 @@ class celestialBody{
   double accel(double dist, double Pnorm);
   double normOfP(double P, double norm);
 
+public:
   celestialBody(double mass_, double Vx0, double Vy0, double Px0, double Py0){
     initializeVariables(mass_, Vx0, Vy0, Py0, Px0);
   }

@@ -5,7 +5,9 @@ class solver{
 
   friend class celestialBody;
 
-  celestialBody& planet;
+  celestialBody planet;
+
+public:
 
   struct data_vectors{
     /*vectors which store the initial velocities and initial positions
@@ -13,8 +15,10 @@ class solver{
     std::vector<double> Px, Py, Vx, Vy;
   };
 
-  solver(celestialBody& planet_){
-    planet = planet_;
+  solver::data_vectors velocityVerlet(int n, double T_);
+
+  solver(celestialBody planet_):planet(planet_){
+  //  planet = planet_;
   }
 
 };
