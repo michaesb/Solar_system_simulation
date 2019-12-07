@@ -7,3 +7,6 @@ cd ..
 
 xterm -T "Euler_plot " -geometry 80x24--11+360 -hold -e 'python plotting_python/euler_plot.py;' &
 xterm -T "Verlet_plot " -geometry 80x24--11+0 -hold -e 'python plotting_python/verlet_plot.py;' &
+sleep 5
+rm textfiles/euler_planet.txt
+rm textfiles/verlet_planet.txt

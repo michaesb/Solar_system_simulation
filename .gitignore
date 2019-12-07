@@ -779,6 +779,6 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-*.txt #ignore textfiles to avoid big data being uploaded
+*.txt #ignore textfiles to avoid big textfiles being uploaded
 
 # End of https://www.gitignore.io/api/c++,latex,python,visualstudio
