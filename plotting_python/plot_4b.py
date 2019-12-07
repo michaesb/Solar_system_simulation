@@ -2,6 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from filereader_module.file_reader import FileReader
 
+"""
+not working yet for project 5 solar system
+"""
+
 
 obj = FileReader("../textfiles/mean_values_beta=1.txt")
 obj2 = FileReader("../textfiles/calc_values_beta=1.txt")
