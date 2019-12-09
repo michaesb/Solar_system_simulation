@@ -16,9 +16,10 @@ public:
   };
 
   solver::data_vectors velocityVerlet(int n, double T_);
+  solver::data_vectors eulerForward(int n, double T_);
 
   solver(celestialBody planet_):planet(planet_){
-  //  planet = planet_;
+
   }
 
 };

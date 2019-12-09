@@ -35,14 +35,9 @@ storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, 
     double ay;
 
     for(int i = 0; i < n; i++){
+        ax = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), Px[i]/P_init);
+        ay = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), Py[i]/P_init);
 
-        // std::cout << accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), (double)Px[i]/P_init) << '\n';
-        // std::cout << accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), (double)Py[i]/P_init) << '\n';
-        // std::cout << "Position" << "(" << Px[i] << "," << Py[i] << ")" << '\n';
-        // std::cout << "Velocity" << "(" << Vx[i] << "," << Vy[i] << ")" << '\n';
-        // std::cout << "-----------------------------------------------" << '\n';
-        ax = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), (double)Px[i]/P_init);
-        ay = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), (double)Py[i]/P_init);
         Px.push_back(Px[i] + Vx[i] * dt + (dt*dt/2.) * ax);
         Py.push_back(Py[i] + Vy[i] * dt + (dt*dt/2.) * ay);
         Vx.push_back(Vx[i] + dt/2. * (accel(sqrt(Px[i+1]*Px[i+1]+Py[i+1]*Py[i+1]), (double)Px[i+1]/P_init) + ax));
@@ -54,7 +49,7 @@ storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, 
 
 storing_vectors eulerForward(double initialVx, double initialVy, double Posx, double Posy, int n){
     double P_init = sqrt(Posx*Posx + Posy*Posy);
-    double T = 100; //year
+    double T = 0.1; //year
     double dt = T /(double) n;
     std::vector<double> Vx,Vy,Px,Py;
 
@@ -84,7 +79,7 @@ int main(){
   if (not run_testfuncs){
     std::cout << "There is an error in the test functions" << '\n';
     return 0;}
-  int n = 1e+5;
+  int n = 10e5;
   double vx_initial = 0;
   double vy_initial = 6.248; //6.284
   double px_initial = 1;
