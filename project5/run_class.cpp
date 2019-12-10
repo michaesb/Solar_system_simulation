@@ -21,9 +21,10 @@ int main(){
     std::cout << "There is an error in the test functions" << '\n';
     return 0;}
 
-  int n = 1e+5;
+  int n = 1e5;
+  double T = 1;
   double vx_in = 0;
-  double vy_in = 6.248; //6.284
+  double vy_in = 6.284; //6.284
   double px_in = 1;
   double py_in = 0;
 
@@ -31,18 +32,17 @@ int main(){
   solver A(planet);
   solver::data_vectors V;
 
-  V = A.velocityVerlet(n, 100);
-/*
-  //storing_vectors eul_vel_pos = eulerForward(vx_initial,vy_initial,px_initial,py_initial,n);
+  V = A.velocityVerlet(n, T);
+
+  write_to_file_vector(V.Vx, V.Vy,
+      V.Px, V.Py,
+      n, "verlet_planet");
+
+V = A.eulerForward(n, T);
+
   write_to_file_vector(V.Vx,V.Vy,
                        V.Px,V.Py,
                        n, "euler_planet");
 
-                       */
-  //storing_vectors vec_vel_pos = velocityVerlet(vx_initial,vy_initial,px_initial,py_initial,n); //6.284
-
-  write_to_file_vector(V.Vx, V.Vy,
-                       V.Px, V.Py,
-                       n, "verlet_planet");
 
 }

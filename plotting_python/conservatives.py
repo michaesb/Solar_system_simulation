@@ -15,7 +15,7 @@ def energy(vx, vy, px, py):
     return(ep+ek)
 
 
-obj = FileReader('../textfiles/verlet_planet.txt')
+obj = FileReader('../textfiles/euler_planet.txt')
 Vx,Vy,Px,Py = obj()
 
 
@@ -26,5 +26,6 @@ for i in range(len(Vx)):
 
 times = np.linspace(0, 100, len(Vx))
 
+plt.xkcd()
 plt.plot(times, energies)
 plt.show()
