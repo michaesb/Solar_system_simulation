@@ -24,8 +24,9 @@ struct storing_vectors{
 
 storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, double Posy, int n){
     double P_init = sqrt(Posx*Posx + Posy*Posy);
-    double T = 100; //year
+    double T = 1; //year
     double dt = T / (double) n;
+    std::cout << "dt = " << dt << '\n';
     std::vector<double> Vx,Vy,Px,Py;
     Vx.push_back(initialVx);
     Vy.push_back(initialVy);
@@ -54,7 +55,7 @@ storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, 
 
 storing_vectors eulerForward(double initialVx, double initialVy, double Posx, double Posy, int n){
     double P_init = sqrt(Posx*Posx + Posy*Posy);
-    double T = 100; //year
+    double T = 1; //year
     double dt = T /(double) n;
     std::vector<double> Vx,Vy,Px,Py;
 
@@ -84,7 +85,7 @@ int main(){
   if (not run_testfuncs){
     std::cout << "There is an error in the test functions" << '\n';
     return 0;}
-  int n = 1e+5;
+  int n = 1e+6;
   double vx_initial = 0;
   double vy_initial = 6.248; //6.284
   double px_initial = 1;
@@ -95,10 +96,10 @@ int main(){
   write_to_file_vector(eul_vel_pos.Vx,eul_vel_pos.Vy,
                        eul_vel_pos.Px,eul_vel_pos.Py,
                        n, "euler_planet");
-  storing_vectors vec_vel_pos = velocityVerlet(vx_initial,vy_initial,px_initial,py_initial,n); //6.284
-  write_to_file_vector(vec_vel_pos.Vx,vec_vel_pos.Vy,
-                       vec_vel_pos.Px,vec_vel_pos.Py,
-                       n, "verlet_planet");
+  // storing_vectors vec_vel_pos = velocityVerlet(vx_initial,vy_initial,px_initial,py_initial,n); //6.284
+  // write_to_file_vector(vec_vel_pos.Vx,vec_vel_pos.Vy,
+  //                      vec_vel_pos.Px,vec_vel_pos.Py,
+  //                      n, "verlet_planet");
 
 
 }
