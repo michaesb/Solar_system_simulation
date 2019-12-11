@@ -30,7 +30,7 @@ int main(){
 
   celestialBody planet(10.0, vx_in, vy_in, px_in, py_in);
   solver A();
-  solver.addPlanet(planet);
+  A.addPlanet(planet);
 
   //solver::data_vectors V;
 
