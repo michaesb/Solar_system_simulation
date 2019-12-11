@@ -16,8 +16,6 @@ class celestialBody{
   }
 
   double dist(double Px, double Py);
-  std::vector<double> accel(double Px, double Py);
-  std::vector<double> accel(double P1x, double P1y,double P2x, double P2y, double m1, double m2);
   double normOfP(double P, double norm);
 
 public:
