@@ -22,10 +22,9 @@ struct storing_vectors{
   std::vector<double> Vx,Vy,Px,Py;
 };
 
-storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, double Posy, int n){
+storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, double Posy, int n, double Time){
     double P_init = sqrt(Posx*Posx + Posy*Posy);
-    double T = 1; //year
-    double dt = T / (double) n;
+    double dt = Time / (double) n;
     std::cout << "dt = " << dt << '\n';
     std::vector<double> Vx,Vy,Px,Py;
     Vx.push_back(initialVx);
@@ -48,12 +47,10 @@ storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, 
     return vec_vel_pos;
 }
 
-storing_vectors eulerForward(double initialVx, double initialVy, double Posx, double Posy, int n){
+storing_vectors eulerForward(double initialVx, double initialVy, double Posx, double Posy, int n, double Time){
     double P_init = sqrt(Posx*Posx + Posy*Posy);
-    double T = 1; //year
-    double dt = T /(double) n;
+    double dt = Time /(double) n;
     std::vector<double> Vx,Vy,Px,Py;
-
     Vx.push_back(initialVx);
     Vy.push_back(initialVy);
     Px.push_back(Posx);
@@ -81,20 +78,21 @@ int main(){
     std::cout << "There is an error in the test functions" << '\n';
     return 0;}
   int n = 1e+6;
+  double Time = 100; //year
   double vx_initial = 0;
-  double vy_initial = 6.248; //6.284
+  double vy_initial = pow(2,0.5)*4*M_PI*1.1;
   double px_initial = 1;
   double py_initial = 0;
 
 
-  storing_vectors eul_vel_pos = eulerForward(vx_initial,vy_initial,px_initial,py_initial,n);
-  write_to_file_vector(eul_vel_pos.Vx,eul_vel_pos.Vy,
-                       eul_vel_pos.Px,eul_vel_pos.Py,
-                       n, "euler_planet");
-  // storing_vectors vec_vel_pos = velocityVerlet(vx_initial,vy_initial,px_initial,py_initial,n); //6.284
-  // write_to_file_vector(vec_vel_pos.Vx,vec_vel_pos.Vy,
-  //                      vec_vel_pos.Px,vec_vel_pos.Py,
-  //                      n, "verlet_planet");
+//  storing_vectors eul_vel_pos = eulerForward(vx_initial,vy_initial,px_initial,py_initial,n,Time);
+ // write_to_file_vector(eul_vel_pos.Vx,eul_vel_pos.Vy,
+  //                      eul_vel_pos.Px,eul_vel_pos.Py,
+  //                      n, "euler_planet");
+  storing_vectors vec_vel_pos = velocityVerlet(vx_initial,vy_initial,px_initial,py_initial,n,Time); //6.284
+  write_to_file_vector(vec_vel_pos.Vx,vec_vel_pos.Vy,
+                       vec_vel_pos.Px,vec_vel_pos.Py,
+                       n, "verlet_planet");
 
 
 }
