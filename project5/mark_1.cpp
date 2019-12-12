@@ -80,7 +80,7 @@ int main(){
   int n = 1e+6;
   double Time = 100; //year
   double vx_initial = 0;
-  double vy_initial = pow(2,0.5)*4*M_PI*1.1;
+  double vy_initial = pow(2,0.5)*4*M_PI; //
   double px_initial = 1;
   double py_initial = 0;
 
