@@ -4,7 +4,7 @@
 
 
 int main(){
-     planet planet1();
-     std::cout<<planet1.position()<<std::endl;
+     celesBod planet1 = celesBod();
+     std::cout<<planet1.returnPos()<<std::endl;
 
 }

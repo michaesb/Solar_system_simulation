@@ -34,7 +34,7 @@ public:
     }
 
 
-
+    double returnPos();
 
 
         //initalizing
