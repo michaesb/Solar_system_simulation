@@ -26,17 +26,3 @@ class celestialBody{
       velocity.push_back(0);
       velocity.push_back(6.28);
   }
-
-public:
-    //functions
-    std::vector<double> returnVelocity();
-    std::vector<double> returnPosition();
-    double returnMass();
-  //constructor
-  celestialBody(double mass_, double Vx0, double Vy0, double Px0, double Py0){
-    initializeVariables(mass_, Vx0, Vy0, Px0, Py0);
-  }
-  celestialBody(){
-      initializeVariables();
-  }
-};
