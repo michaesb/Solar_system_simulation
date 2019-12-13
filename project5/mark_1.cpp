@@ -13,9 +13,9 @@
 #define AU
 
 
-double accel(double r, double P_norm){
+double accel(double r, double Pos){
   //d²X/dt²
-  return -(4 * M_PI * M_PI)*P_norm / (r*r);
+  return -(4 * M_PI * M_PI)*Pos/ (r*r*r);
 }
 
 struct storing_vectors{
@@ -35,8 +35,8 @@ storing_vectors velocityVerlet(double initialVx, double initialVy, double Posx, 
     double ay;
 
     for(int i = 0; i < n; i++){
-        ax = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), Px[i]/P_init);
-        ay = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), Py[i]/P_init);
+        ax = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), Px[i]);
+        ay = accel(sqrt(Px[i]*Px[i]+Py[i]*Py[i]), Py[i]);
 
         Px.push_back(Px[i] + Vx[i] * dt + (dt*dt/2.) * ax);
         Py.push_back(Py[i] + Vy[i] * dt + (dt*dt/2.) * ay);
@@ -77,10 +77,10 @@ int main(){
   if (not run_testfuncs){
     std::cout << "There is an error in the test functions" << '\n';
     return 0;}
-  int n = 1e+6;
-  double Time = 100; //year
+  int n = 1e6;
+  double Time = 1e4; //year
   double vx_initial = 0;
-  double vy_initial = pow(2,0.5)*4*M_PI; //
+  double vy_initial = M_PI*2;//pow(2,0.5)*2*M_PI; //
   double px_initial = 1;
   double py_initial = 0;
 
