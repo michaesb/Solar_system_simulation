@@ -1,85 +1,42 @@
 #pragma once
-#include <vector>
+#include<vector>
 
-class celesBod{
+class celestialBody{
 
-    //physical properties
-    double mass;
-    std::vector<double> position; //x,y
-    std::vector<double> velocity; //x,y
+  friend class solver;
+
+  //class variables
+  double mass;
+  std::vector<double> velocity;
+  std::vector<double> position;
+
+ //intializer function
+  void initializeVariables(double mass_, double Vx0, double Vy0, double Px0, double Py0){
+    mass = mass_;
+    position.push_back(Px0);
+    position.push_back(Py0);
+    velocity.push_back(Vx0);
+    velocity.push_back(Vy0);
+  }
+
+  void initializeVariables(){
+      mass = 1;
+      position.push_back(1);
+      position.push_back(0);
+      velocity.push_back(0);
+      velocity.push_back(6.28);
+  }
 
 public:
-     celesBod(){
-        /*
-        If no inital conditions are given, sets them to standard ones.
-        */
-        mass = 1;
-        velocity.push_back(0);
-        velocity.push_back(6.28);
-        position.push_back(1);
-        position.push_back(0);
-
-    }
-
-    celesBod(double m0, double vx0,
-                                 double vy0, double px0, double py0){
-        /*
-        initializes the class with inital variables
-        */
-        mass = m0;
-        velocity.push_back(vx0);
-        velocity.push_back(vy0);
-        position.push_back(px0);
-        position.push_back(py0);
-    }
-
-
-
-
-
-        //initalizing
-        //celesBod();
-        //celesBod(double m0, double vx0, double vy0,
-        //              double px0, double py0);
-
+    //functions
+    std::vector<double> returnVelocity();
+    std::vector<double> returnPosition();
+    double returnMass();
+  //constructor
+  celestialBody(double mass_, double Vx0, double Vy0, double Px0, double Py0){
+    initializeVariables(mass_, Vx0, Vy0, Px0, Py0);
+  }
+  celestialBody(){
+      initializeVariables();
+  }
 };
-
-
-
-
-/*
-#ifndef PLANET_H
-#define PLANET_H
-#define _USE_MATH_DEFINES
-#include <cmath>
-#include <vector>
-using std::vector;
-
-
-class planet
-{
-public:
-    // Properties
-    double mass;
-    double position[3];
-    double velocity[3];
-    double potential;
-    double kinetic;
-
-    // Initializers
-    planet();
-    planet(double M,double x,double y,double z,double vx, double vy,double vz);
-
-    // Functions
-    double distance(planet otherPlanet);
-    double GravitationalForce(planet otherPlanet, double Gconst);
-    double Acceleration(planet otherPlanet, double Gconst);
-    double KineticEnergy();
-    double PotentialEnergy(planet &otherPlanet, double Gconst, double epsilon);
-
-};
-
-#endif // PLANET_H
-
-
-*/
