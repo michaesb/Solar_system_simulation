@@ -8,6 +8,7 @@ std::vector<double> celestialBody::returnPosition(){
     return position;
 }
 
+
 double celestialBody::returnMass(){
     /*
     returns mass of celestial body

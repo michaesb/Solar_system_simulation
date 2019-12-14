@@ -4,6 +4,7 @@ void solver::addPlanet(celestialBody planet){
     /*
     Adds a new planet to the solar system
     */
+    planetNr ++;
     solarSystem.push_back(planet);
 }
 
@@ -51,4 +52,40 @@ std::vector<double> solver::gravity(int i, int j){
     forces.push_back(forcex);
     forces.push_back(forcey);
     return forces;
+}
+
+std::vector<std::vector<double>> solver::gravityVec(){
+    /*
+    Returns a vector with acceleration vectors for planets in solarSystem
+    */
+    std::vector<std::vector<double>> gravitatas;
+    double gravtempx;
+    double gravtempy;
+    std::vector<double> gravtempvec;
+
+    for(int i=0; i<planetNr; i++){
+        gravtempx = 0;
+        gravtempy = 0;
+
+        for(int j=0; j<planetNr; j++){
+            if(i != j){
+                gravtempx += gravity(i, j)[0]/solarSystem[i].mass;
+                gravtempy += gravity(i, j)[1]/solarSystem[i].mass;
+            }
+        }
+
+        gravtempvec.push_back(gravtempx);
+        gravtempvec.push_back(gravtempy);
+        gravitatas.push_back(gravtempvec);
+        gravtempvec.clear();
+    }
+    return gravitatas;
+}
+
+
+void solver::velocityVerlet(){
+    /*
+    Implementation of the velocity verlet integration method.
+    finds the final position and velocity of planets in solver
+    */
 }
