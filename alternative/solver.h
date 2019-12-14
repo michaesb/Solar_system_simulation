@@ -4,18 +4,25 @@
 #include <iostream>
 
 class solver{
-
+/*
+Class for solving n-body problem.
+Initializes with arguments n and T.
+n is number of time steps. T is time in years.
+*/
   friend class celestialBody;
-  //define global variables
+  //define global variable
   int n;
   double T;
+  double dt;
   int planetNr;
   std::vector<celestialBody> solarSystem;
+
   void initializeVariables(int n_, double T_){
       //initializer. n_ is nr of timesteps, T_ is time in years.
       n = n_;
       T = T_;
       planetNr = 0;
+      dt = T/(double)n;
   }
 
 public:

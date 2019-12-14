@@ -88,4 +88,34 @@ void solver::velocityVerlet(){
     Implementation of the velocity verlet integration method.
     finds the final position and velocity of planets in solver
     */
+    std::vector<std::vector<double>> accel1;
+    std::vector<std::vector<double>> accel2;
+
+    for(int i = 0; i < n; i++){
+        //calculating initial gravitational acceleration
+        accel1 = gravityVec();
+        //loop for updating positions
+        for (int k = 0; k < planetNr; k++){
+            //x component of position
+            solarSystem[k].position[0] = solarSystem[k].position[0]
+                                       + solarSystem[k].velocity[0]*dt
+                                       + (dt*dt/2.0)*accel1[k][0];
+            //y component of position
+            solarSystem[k].position[1] = solarSystem[k].position[1]
+                                       + solarSystem[k].velocity[1]*dt
+                                       + (dt*dt/2.0)*accel1[k][1];
+        }
+        //calculating secondary gravitational acceleration
+        accel2 = gravityVec();
+        //loop for updating velocities
+        for(int k = 0; k<planetNr; k++){
+            //x component of velocity
+            solarSystem[k].velocity[0] = solarSystem[k].velocity[0]
+                                       + (dt/2.0)*(accel2[k][0]+ accel1[k][0]);
+            //y component of velocity
+            solarSystem[k].velocity[1] = solarSystem[k].velocity[1]
+                                       + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
+        }
+        
+    }
 }

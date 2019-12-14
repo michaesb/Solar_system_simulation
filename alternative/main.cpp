@@ -5,15 +5,16 @@
 //#include <iostream>
 
 int main(){
-     solver B(1, 2);
-     celestialBody planet;
+     double earthmass = 0.000003003; //earth mass in solar masses
+     solver B(1e5, 1);
+     celestialBody planet(earthmass, 0, 6.28, 1, 0);
      celestialBody planet2(1, 0, 0, 0, 0);
-     celestialBody planet3(1, 0, 0, 2, 0);
      B.addPlanet(planet);
      B.addPlanet(planet2);
-     B.addPlanet(planet3);
-     std::vector<std::vector<double>> testaccel;
-     testaccel = B.gravityVec();
-     std::cout<<testaccel[0][0]<<std::endl;
+     B.velocityVerlet();
+
+     std::cout<<"x position of planet is "<<B.returnPlanet(0).returnPosition()[0]<<std::endl;
+     std::cout<<"y position of planet is "<<B.returnPlanet(0).returnPosition()[1]<<std::endl;
+
      return 0;
 }
