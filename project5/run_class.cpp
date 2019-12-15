@@ -29,8 +29,10 @@ int main(){
   double py_in = 0;
 
   celestialBody planet(10.0, vx_in, vy_in, px_in, py_in);
-  solver A(planet);
-  solver::data_vectors V;
+  solver A();
+  A.addPlanet(planet);
+
+  //solver::data_vectors V;
 
   V = A.velocityVerlet(n, T);
 
