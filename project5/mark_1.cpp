@@ -77,18 +77,18 @@ int main(){
   if (not run_testfuncs){
     std::cout << "There is an error in the test functions" << '\n';
     return 0;}
-  int n = 1e6;
-  double Time = 1e4; //year
+  int n = 1e2;
+  double Time = 1; //year
   double vx_initial = 0;
-  double vy_initial = M_PI*2;//pow(2,0.5)*2*M_PI; //
+  double vy_initial = 2*M_PI;//pow(2,0.5)*2*M_PI; //
   double px_initial = 1;
   double py_initial = 0;
 
 
-//  storing_vectors eul_vel_pos = eulerForward(vx_initial,vy_initial,px_initial,py_initial,n,Time);
- // write_to_file_vector(eul_vel_pos.Vx,eul_vel_pos.Vy,
-  //                      eul_vel_pos.Px,eul_vel_pos.Py,
-  //                      n, "euler_planet");
+  storing_vectors eul_vel_pos = eulerForward(vx_initial,vy_initial,px_initial,py_initial,n,Time);
+ write_to_file_vector(eul_vel_pos.Vx,eul_vel_pos.Vy,
+                      eul_vel_pos.Px,eul_vel_pos.Py,
+                      n, "euler_planet");
   storing_vectors vec_vel_pos = velocityVerlet(vx_initial,vy_initial,px_initial,py_initial,n,Time); //6.284
   write_to_file_vector(vec_vel_pos.Vx,vec_vel_pos.Vy,
                        vec_vel_pos.Px,vec_vel_pos.Py,

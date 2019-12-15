@@ -2,7 +2,7 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 from filereader_module.file_reader import FileReader
-
+import seaborn
 
 
 obj = FileReader('textfiles/verlet_planet.txt')
@@ -11,10 +11,11 @@ Vx,Vy,Px,Py = obj()
 # plt.plot(Px,Py)
 plt.plot(Px,Py)
 
-plt.title('Verlet. n = '+str(len(Vx)))
+plt.title('Verlet with a circular orbit. dt = '+str(1./len(Vx)))
 
 plt.ylabel('y')
 plt.xlabel('x')
+plt.axis("equal")
 plt.show()
 
 """

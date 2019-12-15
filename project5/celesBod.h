@@ -5,14 +5,14 @@ class celestialBody{
   friend class solver;
 
   double mass;
-  double Px0, Py0, Vx0, Vy0;
+  vector<double> P, V;
 
-  void initializeVariables(double mass_, double Vx0_, double Vy0_, double Px0_, double Py0_){
+  void initializeVariables(double mass_, double Vx0, double Vy0, double Px0, double Py0){
     mass = mass_;
-    Px0 = Px0_;
-    Py0 = Py0_;
-    Vx0 = Vx0_;
-    Vy0 = Vy0_;
+    P.push_back(Px0);
+    P.push_back(Py0);
+    V.push_back(Vx0);
+    V.push_back(Vy0);
   }
 
   double dist(double Px, double Py);
