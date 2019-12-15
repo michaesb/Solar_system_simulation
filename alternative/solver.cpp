@@ -62,14 +62,14 @@ std::vector<double> solver::gravity(int i, int j){
     celestialBody planet1 = returnPlanet(i);
     celestialBody planet2 = returnPlanet(j);
 
-    std::vector<double> P1pos = planet1.returnPosition();
+    //std::vector<double> P1pos = planet1.returnPosition();
     std::vector<double> P2pos = planet2.returnPosition();
 
-    double P1x = P1pos[0];
-    double P1y = P1pos[1];
+    double P1x = planet1.returnPosition()[0];//P1pos[0];
+    double P1y = planet1.returnPosition()[1];//P1pos[1];
     double P1mass = planet1.returnMass();
-    double P2x = P2pos[0];
-    double P2y = P2pos[1];
+    double P2x = planet2.returnPosition()[0];//P2pos[0];
+    double P2y = planet2.returnPosition()[1];//P2pos[1];
     double P2mass = planet2.returnMass();
 
     //creating vector from planet 1 to planet 2

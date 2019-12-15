@@ -1,15 +1,12 @@
 #include "celesBod.cpp"
-#include "celesBod.h"
 #include "solver.cpp"
-//#include "solver.h"
-//#include <iostream>
 
 int main(){
      //values are taken from november 29th 2019
-     double solarmass = 1.989e30;
-     double days = 365.24;
-     int n = 1e6;
-     double T = 100;
+     double solarmass = 1.989e30; //In kg
+     double days = 365.24; // In days
+     int n = 1e4; //Number of steps
+     double T = 500;//Number of years you will plot
      // solver B(n, T);
      // celestialBody sun(1, 0, 0, 0, 0);
      // celestialBody earth(0.000003003, -1.602723439211851e-02*days, 6.882264719474028e-03*days, 3.983744251977597e-01, 9.025161878539018e-01); //mass, vx, vy, px, py
@@ -40,6 +37,6 @@ int main(){
      A.addPlanet(mercia);
      A.stationaryVelVerlet();
 
-     
+
      return 0;
 }

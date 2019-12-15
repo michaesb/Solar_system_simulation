@@ -11,7 +11,7 @@ Initializes with arguments n and T.
 n is number of time steps. T is time in years.
 */
   friend class celestialBody;
-  //define global variable
+  //define class variables
   int n;
   double T;
   double dt;
