@@ -12,15 +12,17 @@ n is number of time steps. T is time in years.
 */
   friend class celestialBody;
   //define class variables
-  int n;
-  double T;
-  double dt;
-  int planetNr;
-  std::vector<celestialBody> solarSystem;
-  bool delta;
+  int n; //Number of integration steps
+  double T; //Time in years
+  double dt; //Time step
+  int planetNr; //Total number of planets in solarSystem
+  std::vector<celestialBody> solarSystem; //vector which holds celestial bodies
+  bool delta; //Bool which decides if to use relativity-based force
 
   void initializeVariables(int n_, double T_){
-      //initializer. n_ is nr of timesteps, T_ is time in years.
+      /*
+      Initializes an instance of solver
+      */
       n = n_;
       T = T_;
       planetNr = 0;
@@ -31,6 +33,7 @@ n is number of time steps. T is time in years.
   void initializeVariables(int n_, double T_, bool delta_){
       /*
       Initializer for overloading constructor
+      Initializes an instance of solver
       For use when relativity is relevant
       */
       n = n_;
@@ -41,7 +44,7 @@ n is number of time steps. T is time in years.
   }
 
 public:
-    //constructor
+    //constructors
     solver(int n_, double T_){
         initializeVariables(n_, T_);
     }
@@ -56,6 +59,7 @@ public:
     void fileInitializer(std::string filename);
     void fileWriter(int i, std::string filename);
     std::vector<double> gravity(int i, int j);
+    double relativityFactor(int i, bool delta, double Px, double Py);
     std::vector<std::vector<double>> gravityVec();
     void velocityVerlet();
     void stationaryVelVerlet();

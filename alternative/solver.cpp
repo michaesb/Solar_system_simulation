@@ -1,6 +1,7 @@
 #include "solver.h"
 
-#define C 63198
+#define C 63198 //Speed of light in AU
+#define GM 4*M_PI*M_PI
 
 void solver::addPlanet(celestialBody planet){
     /*
@@ -62,14 +63,13 @@ std::vector<double> solver::gravity(int i, int j){
     celestialBody planet1 = returnPlanet(i);
     celestialBody planet2 = returnPlanet(j);
 
-    //std::vector<double> P1pos = planet1.returnPosition();
-    std::vector<double> P2pos = planet2.returnPosition();
 
-    double P1x = planet1.returnPosition()[0];//P1pos[0];
-    double P1y = planet1.returnPosition()[1];//P1pos[1];
+
+    double P1x = planet1.returnPosition()[0];
+    double P1y = planet1.returnPosition()[1];
     double P1mass = planet1.returnMass();
-    double P2x = planet2.returnPosition()[0];//P2pos[0];
-    double P2y = planet2.returnPosition()[1];//P2pos[1];
+    double P2x = planet2.returnPosition()[0];
+    double P2y = planet2.returnPosition()[1];
     double P2mass = planet2.returnMass();
 
     //creating vector from planet 1 to planet 2
@@ -80,9 +80,9 @@ std::vector<double> solver::gravity(int i, int j){
     double unitr3x = r3x /(sqrt(r3x*r3x + r3y*r3y));
     double unitr3y = r3y /(sqrt(r3x*r3x + r3y*r3y));
 
-    double Gmark = (4*M_PI*M_PI*P1mass*P2mass/(r3x*r3x + r3y*r3y))
-                    *(1 + (delta*3*angularMom(i)*angularMom(i))
-                           /(sqrt(P1x*P1x + P1y*P1y)*C*C));
+    double Gmark = (GM*P1mass*P2mass/(r3x*r3x + r3y*r3y))
+                    *relativityFactor(i, delta, P1x, P1y);
+
     double forcex = Gmark*unitr3x;
     double forcey = Gmark*unitr3y;
 
@@ -90,6 +90,15 @@ std::vector<double> solver::gravity(int i, int j){
     forces.push_back(forcex);
     forces.push_back(forcey);
     return forces;
+}
+
+double solver::relativityFactor(int i, bool delta, double Px, double Py){
+  /*
+  If delta is true, relativity is taken into consideration for calculating the force
+  */
+  double angMom_sqr = angularMom(i)*angularMom(i);
+  double r_sqr = sqrt(Px*Px+Py*Py);
+  return (1 + (delta*3*angMom_sqr)/(r_sqr*C*C));
 }
 
 std::vector<std::vector<double>> solver::gravityVec(){

@@ -6,7 +6,7 @@ int main(){
      double solarmass = 1.989e30; //In kg
      double days = 365.24; // In days
      int n = 1e4; //Number of steps
-     double T = 500;//Number of years you will plot
+     double T = 30;//Number of years you will plot
      // solver B(n, T);
      // celestialBody sun(1, 0, 0, 0, 0);
      // celestialBody earth(0.000003003, -1.602723439211851e-02*days, 6.882264719474028e-03*days, 3.983744251977597e-01, 9.025161878539018e-01); //mass, vx, vy, px, py
