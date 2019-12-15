@@ -2,6 +2,7 @@
 #include <cmath>
 #include <string>
 #include <iostream>
+#include <fstream>
 
 class solver{
 /*
@@ -34,8 +35,11 @@ public:
     //functions
     void addPlanet(celestialBody planet);
     celestialBody returnPlanet(int index);
+    void fileInitializer(std::string filename);
+    void fileWriter(int i, std::string filename);
     std::vector<double> gravity(int i, int j);
     std::vector<std::vector<double>> gravityVec();
     void velocityVerlet();
+    void stationaryVelVerlet();
 
 };

@@ -15,6 +15,30 @@ celestialBody solver::returnPlanet(int index){
     return solarSystem[index];
 }
 
+void solver::fileInitializer(std::string filename){
+    /*
+    Writes the first line of a file with filename on csv format
+    */
+    std::string path = "../textfiles/" + filename + ".txt";
+    std::ofstream file(path);
+    file << "VelocityX" << "," << "VelocityY" << ",";
+    file << "PositionX" << "," << "PositionY" << "\n";
+}
+
+void solver::fileWriter(int i, std::string filename){
+    /*
+    Adds info from planet i to file with name filename on csv format
+    */
+
+    std::ofstream file;
+    file.open("../textfiles/" + filename + ".txt", std::ios::app);
+    file << solarSystem[i].velocity[0] << ",";
+    file << solarSystem[i].velocity[1] << ",";
+    file << solarSystem[i].position[0] << ",";
+    file << solarSystem[i].position[1] << "\n";
+}
+
+
 std::vector<double> solver::gravity(int i, int j){
     /*
     Takes 2 indices and returns gravitational pull
@@ -91,6 +115,13 @@ void solver::velocityVerlet(){
     std::vector<std::vector<double>> accel1;
     std::vector<std::vector<double>> accel2;
 
+    //Initializes files
+    for(int k = 0; k < planetNr; k++){
+        fileInitializer("planet"+std::to_string(k));
+        fileWriter(k, "planet"+std::to_string(k));
+    }
+
+    //loop through timesteps
     for(int i = 0; i < n; i++){
         //calculating initial gravitational acceleration
         accel1 = gravityVec();
@@ -116,6 +147,62 @@ void solver::velocityVerlet(){
             solarSystem[k].velocity[1] = solarSystem[k].velocity[1]
                                        + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
         }
-        
+        //writing planet values to files
+        for(int k = 0; k<planetNr; k++){
+            fileWriter(k, "planet"+std::to_string(k));
+        }
+    }
+}
+
+void solver::stationaryVelVerlet(){
+    /*
+    Implementation of the velocity verlet integration method.
+    Finds the final position and velocity of planets in solarSystem.
+    Does not update the first celestial body in solarSystem.
+    If this is the sun, the system is centered on the sun.
+
+
+    */
+    std::vector<std::vector<double>> accel1;
+    std::vector<std::vector<double>> accel2;
+
+    //Initializes files
+    for(int k = 0; k < planetNr; k++){
+        fileInitializer("planet"+std::to_string(k));
+        fileWriter(k, "planet"+std::to_string(k));
+    }
+
+    //loop through timesteps
+    for(int i = 0; i < n; i++){
+        //calculating initial gravitational acceleration
+        accel1 = gravityVec();
+        //loop for updating positions
+        for (int k = 1; k < planetNr; k++){
+            //x component of position
+            solarSystem[k].position[0] = solarSystem[k].position[0]
+                                       + solarSystem[k].velocity[0]*dt
+                                       + (dt*dt/2.0)*accel1[k][0];
+            //y component of position
+            solarSystem[k].position[1] = solarSystem[k].position[1]
+                                       + solarSystem[k].velocity[1]*dt
+                                       + (dt*dt/2.0)*accel1[k][1];
+        }
+        //calculating secondary gravitational acceleration
+        accel2 = gravityVec();
+        //loop for updating velocities
+        for(int k = 1; k<planetNr; k++){
+            //x component of velocity
+            solarSystem[k].velocity[0] = solarSystem[k].velocity[0]
+                                       + (dt/2.0)*(accel2[k][0]+ accel1[k][0]);
+            //y component of velocity
+            solarSystem[k].velocity[1] = solarSystem[k].velocity[1]
+                                       + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
+        }
+        //writing planet values to files
+        if (i%(int)(1/((1e4)/n)) == 0 || n < 1e4){ 
+            for(int k = 0; k<planetNr; k++){
+                fileWriter(k, "planet"+std::to_string(k));
+            }
+        }
     }
 }
