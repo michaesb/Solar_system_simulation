@@ -1,5 +1,7 @@
 #include "solver.h"
 
+#define C 63198
+
 void solver::addPlanet(celestialBody planet){
     /*
     Adds a new planet to the solar system
@@ -13,6 +15,16 @@ celestialBody solver::returnPlanet(int index){
     Returns planet from solarSystem
     */
     return solarSystem[index];
+}
+
+inline double solver::angularMom(int index){
+    /*
+    Returns angular momentum of planet with given index
+    */
+    celestialBody plany = solarSystem[index];
+    return plany.mass*(plany.position[0]*plany.velocity[1]
+                       -plany.position[1]*plany.velocity[0]);
+
 }
 
 void solver::fileInitializer(std::string filename){
@@ -68,7 +80,9 @@ std::vector<double> solver::gravity(int i, int j){
     double unitr3x = r3x /(sqrt(r3x*r3x + r3y*r3y));
     double unitr3y = r3y /(sqrt(r3x*r3x + r3y*r3y));
 
-    double Gmark = 4*M_PI*M_PI*P1mass*P2mass/(r3x*r3x + r3y*r3y);
+    double Gmark = (4*M_PI*M_PI*P1mass*P2mass/(r3x*r3x + r3y*r3y))
+                    *(1 + (delta*3*angularMom(i)*angularMom(i))
+                           /(sqrt(P1x*P1x + P1y*P1y)*C*C));
     double forcex = Gmark*unitr3x;
     double forcey = Gmark*unitr3y;
 

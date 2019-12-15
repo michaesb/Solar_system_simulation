@@ -26,4 +26,4 @@ def nbody_plotter(n, path = "textfiles/"):
     plt.show()
 
 if __name__ == "__main__":
-    nbody_plotter(10, path = "textfiles/")
+    nbody_plotter(2, path = "textfiles/")

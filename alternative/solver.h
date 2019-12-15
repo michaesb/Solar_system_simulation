@@ -52,6 +52,7 @@ public:
     //functions
     void addPlanet(celestialBody planet);
     celestialBody returnPlanet(int index);
+    double angularMom(int index);
     void fileInitializer(std::string filename);
     void fileWriter(int i, std::string filename);
     std::vector<double> gravity(int i, int j);
