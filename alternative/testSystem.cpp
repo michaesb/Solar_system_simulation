@@ -23,7 +23,7 @@ bool testing_orbit(int& nr){
   if ((position[0] -1<tol )  || ( position[1]< tol )){
     return true;
   }
-  return true;
+  return false;
 }
 
 bool testing_randMTr(int& nr){
