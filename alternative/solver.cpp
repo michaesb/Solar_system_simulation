@@ -148,8 +148,10 @@ void solver::velocityVerlet(){
                                        + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
         }
         //writing planet values to files
-        for(int k = 0; k<planetNr; k++){
-            fileWriter(k, "planet"+std::to_string(k));
+        if (i%(int)(1/((1e4)/n)) == 0 || n < 1e4){
+            for(int k = 0; k<planetNr; k++){
+                fileWriter(k, "planet"+std::to_string(k));
+            }
         }
     }
 }
@@ -160,8 +162,6 @@ void solver::stationaryVelVerlet(){
     Finds the final position and velocity of planets in solarSystem.
     Does not update the first celestial body in solarSystem.
     If this is the sun, the system is centered on the sun.
-
-
     */
     std::vector<std::vector<double>> accel1;
     std::vector<std::vector<double>> accel2;
@@ -199,7 +199,7 @@ void solver::stationaryVelVerlet(){
                                        + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
         }
         //writing planet values to files
-        if (i%(int)(1/((1e4)/n)) == 0 || n < 1e4){ 
+        if (i%(int)(1/((1e4)/n)) == 0 || n < 1e4){
             for(int k = 0; k<planetNr; k++){
                 fileWriter(k, "planet"+std::to_string(k));
             }
