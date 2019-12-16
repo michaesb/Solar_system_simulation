@@ -97,14 +97,16 @@ double solver::relativityFactor(int i, bool delta, double Px, double Py){
   /*
   If delta is true, relativity is taken into consideration for calculating the force
   */
-  double angMom_sqr = angularMom(i)*angularMom(i);
+  double planetMass = solarSystem[i].mass;
+
+  double angMom_sqr = (angularMom(i)/planetMass)*angularMom(i)/(planetMass);
   double r_sqr = sqrt(Px*Px+Py*Py);
 
-  if(r_sqr > 1e-5){
+  if(r_sqr > 1e-8){
       return (1 + (delta*3*angMom_sqr)/(r_sqr*C*C));
   }
   else{
-      return 0;
+      return 1;
   }
 }
 
