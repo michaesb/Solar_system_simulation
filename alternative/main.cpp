@@ -1,12 +1,12 @@
 #include "celesBod.cpp"
 #include "solver.cpp"
 #include "testSystem.cpp"
+
 int main(){
    if (not run_testfuncs()){
       std::cout << "error in testfunctions" <<std::endl;
       return 0;
    } else std::cout << "test passed" << '\n';
-   return 0;
 
    //values are taken from november 29th 2019
    double solarmass = 1.989e30; //In kg
