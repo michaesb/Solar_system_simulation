@@ -2,7 +2,7 @@
 
 ##COMPUTATIONAL PHYSICS PROJECT 3
 
-This is a computational project in FYS-3150/4150 at UIO. In this project we will look at a model of the solar system using Velocity Verlet. 
+This is a computational project in FYS-3150/4150 at UIO. In this project we will look at a model of the solar system using Velocity Verlet algorithm.
 
 
 ## Getting Started
@@ -14,7 +14,7 @@ If you are using Linux terminal for running the program, just run the script run
 ´´´
 ./run_scripts/run_main.sh
 ´´´
-There are different run_scripts that will create different kinds of data, but all of them will be written to a textfile in the textfiles folder. In order to aboid overwritting the data, we have had git ignore the texfiles, so they might not be seen by your editor. 
+There are different run_scripts that will create different kinds of data, but all of them will be written to a textfile in the textfiles folder. In order to avoid overwritting the data, we have had git ignore the texfiles, so they might not be seen by your editor. 
 We have 4 run_scripts in this repository: 
 run_main: uses one core and compute one system value. A function can be uncommented to run for different Mc-cycles
 temp_run.sh uses all available cores to run the algorithm for multiple temperature for a constant MC-value
@@ -22,7 +22,7 @@ opt_run.sh uses all available cores to run the algorithm for multiple Mc_values 
 begin_work.sh this is just a comfortable way of starting the atom editor and open the project description. 
 ### Prerequisites
 
-Make sure you have OpenMP's library mpi.h installed in your computer, either is it windows or linux. We recommend a minimum of 4 core processor, but the more cores you have,the quicker the fastet the programs will run. A minimum of 2 GB of RAM will do.
+We recommend a minimum of 4 core processor, but the more cores you have, the quicker the programs will run. A minimum of 2 GB of RAM will do.
 
 ### Installing
 
@@ -33,42 +33,34 @@ FOR LINUX:
 -Get some coffee and have fun
 
 FOR WINDOWS:
--Install mpi.h library. (Or make sure you have it with a small test)
 -Make a new project in the test editor or IDE of your choice. Set the compiler settings to have the flags you can find in run_main.sh (Open it as a text file or see below):
                                                   g++ -O3 project3.cpp -o run_code -std=c++11 -lgomp
 
 -Try and see if it works.
--If a error pops out which says that the functions are being defined twice, comment or erase #include <x.cpp> (all of them) from project3.cpp.
+-If a error pops out which says that the functions are being defined twice, comment or erase #include <x.cpp> (all of them) from main.cpp.
 -Good luck
 
 ## Running the tests
 
 The tests are run automatically by the run_main.sh. You will know the tests passed if you get to see it printed in your console.
 
-
 ### Coding tests
 
 The tests will check three things:
 
-The random number generator.
--Checks the "randomness" of the generator. Generates a big number of random numbers, sums them and calculates the average. It should be approximately 0.5.
-This is checked in this function.
+Circular orbit test
+-Checks that a celestial body which we know has a circular orbit returns (aproximately) to the starting point after one period.
 
-The general Metropolis method.
--Compares the values of the metropolis algorithm for a 2x2 lattice with the analytical values which are known
+Conservation of momentum and energy
+-Checks that for a celestial body, the momentum and potential energy of the celestial body are conserved (aproximately since the numerical methods do have a "loss" in energy)
 
-
-At the moment of running the optimized code, you may see some warnings. This is normal, and it isnt a problem.
-
-
-## Built With
-
-* [OpenMP] Used to paralelize the code (https://www.openmp.org/resources/openmp-compilers-tools/)
+Gravity function
+-Checks that the gravity function returns expected values for a celestial body
 
 
 ## Authors
 
-[Project4] https://github.uio.no/michaesb/project4_fys_MiSIAK
+[Project5] https://github.com/michaesb/Solar_system_simulation
 
 Silvia Morales     Michael Bitney        Aksel Graneng
 
