@@ -83,6 +83,7 @@ std::vector<double> solver::gravity(int i, int j){
     double Gmark = (GM*P1mass*P2mass/(r3x*r3x + r3y*r3y))
                     *relativityFactor(i, delta, P1x, P1y);
 
+
     double forcex = Gmark*unitr3x;
     double forcey = Gmark*unitr3y;
 
@@ -98,7 +99,13 @@ double solver::relativityFactor(int i, bool delta, double Px, double Py){
   */
   double angMom_sqr = angularMom(i)*angularMom(i);
   double r_sqr = sqrt(Px*Px+Py*Py);
-  return (1 + (delta*3*angMom_sqr)/(r_sqr*C*C));
+
+  if(r_sqr > 1e-5){
+      return (1 + (delta*3*angMom_sqr)/(r_sqr*C*C));
+  }
+  else{
+      return 0;
+  }
 }
 
 std::vector<std::vector<double>> solver::gravityVec(){
@@ -171,11 +178,20 @@ void solver::velocityVerlet(){
                                        + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
         }
         //writing planet values to files
-        if (i%(int)(1/((1e4)/n)) == 0 || n < 1e4){
+
+        if(n>1e4){
+            if (i%(int)(1/((1e4)/n)) == 0){
+                for(int k = 0; k<planetNr; k++){
+                    fileWriter(k, "planet"+std::to_string(k));
+                }
+            }
+        }
+        else{
             for(int k = 0; k<planetNr; k++){
                 fileWriter(k, "planet"+std::to_string(k));
             }
         }
+
     }
 }
 
@@ -222,10 +238,19 @@ void solver::stationaryVelVerlet(){
                                        + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
         }
         //writing planet values to files
-        if (i%(int)(1/((1e4)/n)) == 0 || n < 1e4){
+
+        if(n>1e4){
+            if (i%(int)(1/((1e4)/n)) == 0){
+                for(int k = 0; k<planetNr; k++){
+                    fileWriter(k, "planet"+std::to_string(k));
+                }
+            }
+        }
+        else{
             for(int k = 0; k<planetNr; k++){
                 fileWriter(k, "planet"+std::to_string(k));
             }
         }
+
     }
 }
