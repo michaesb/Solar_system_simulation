@@ -25,7 +25,7 @@ class celestialBody{
     /*
     If no arguments are given, the planet is initialized as planet Earth. Used for debugging purposes
     */
-      initializeVariables(1, 0, 6.28, 1, 0);
+      initializeVariables(1, 0, 0, 0, 0);
   }
 
 public:

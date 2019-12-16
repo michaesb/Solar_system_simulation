@@ -8,6 +8,8 @@ void mercurySim(int n, double T){
     a relativistic gravity.
     Takes timesteps n and timespan T (years).
     */
+    double solarmass = 1.989e30; //In kg
+    double days = 365.24; // In days
     solver A(n, T);
     celestialBody sun(1,0,0,0,0);
     celestialBody mercia(3.3e23/solarmass, 0, 12.44, 0.3075, 0);
@@ -15,15 +17,21 @@ void mercurySim(int n, double T){
     A.addPlanet(mercia);
     A.stationaryVelVerlet();
 
-    double angle a1 = atan(A.returnPosition()[1]/A.returnPosition()[0]);
+    double angle_1 = atan(A.returnPlanet(1).returnPosition()[1]
+                          /A.returnPlanet(1).returnPosition()[0])/3600;
 
-    solver B(n, T);
-    celestialBody sun(1,0,0,0,0);
-    celestialBody mercia(3.3e23/solarmass, 0, 12.44, 0.3075, 0);
+    solver B(n, T, 1);
     B.addPlanet(sun);
     B.addPlanet(mercia);
     B.stationaryVelVerlet();
 
+    double angle_2 = atan(B.returnPlanet(1).returnPosition()[1]
+                         /B.returnPlanet(1).returnPosition()[0])/3600;
+
+    // std::cout<<"non-relativistic perihelion precession is: "
+    //          <<angle_1 << " degrees"<<std::endl;
+    // std::cout<<"relativistic perihelion precession is: "
+    //          <<angle_2 <<" degrees"<<std::endl;
 }
 
 int main(){
@@ -32,11 +40,10 @@ int main(){
       return 0;
    } else std::cout << "test passed" << '\n';
 
-   //values are taken from november 29th 2019
-   double solarmass = 1.989e30; //In kg
-   double days = 365.24; // In days
    int n = 1e4; //Number of steps
-   double T = 30;//Number of years you will plot
+   double T = 100;//Number of years you will plot
+
+   mercurySim(n, T);
 
    return 0;
 }

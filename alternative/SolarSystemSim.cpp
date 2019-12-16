@@ -43,8 +43,6 @@ int main(){
    } else std::cout << "test passed" << '\n';
 
    //values are taken from november 29th 2019
-   double solarmass = 1.989e30; //In kg
-   double days = 365.24; // In days
    int n = 1e4; //Number of steps
    double T = 1;//Number of years you will plot
 
