@@ -17,7 +17,7 @@ void Jupiter_bodySim(int n, double T){
     problemSolver.addPlanet(sun);
     problemSolver.addPlanet(earth);
     problemSolver.addPlanet(jupiter);
-    problemSolver.velocityVerlet();
+    problemSolver.stationaryVelVerlet();
 }
 
 int main(){

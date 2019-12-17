@@ -74,8 +74,8 @@ storing_vectors eulerForward(double initialVx, double initialVy, double Posx, do
 
 int main(){
 
-  int n = 1e6;
-  double Time = 100; //year
+  int n = 1e4;
+  double Time = 1; //year
   double vx_initial = 0;
   double vy_initial = 2*M_PI; //escape
   // double vy_initial = 2*M_PI; //orbit
