@@ -29,8 +29,6 @@ bool testing_orbit(int& nr){
   double xpos = earth_future.returnPosition()[0];
   double ypos = earth_future.returnPosition()[1];
 
-  std::cout<<"anglechange = "<<atan(fabs(ypos/xpos))*3600/M_PI*180<<" arcseconds"<<std::endl;
-
 
   //speed of planet at the end of simulation
   double endspeed = sqrt(earth_future.returnVelocity()[0]
