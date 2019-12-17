@@ -43,7 +43,7 @@ int main(){
    } else std::cout << "test passed" << '\n';
 
    //values are taken from november 29th 2019
-   int n = 1e4; //Number of steps
+   int n = 1e6; //Number of steps
    double T = 250;//Number of years you will plot
 
    nbodySim(n, T);
