@@ -18,10 +18,12 @@ def nbody_plotter(n, path = "textfiles/"):
 
     for i in range(len(datas)):
         plt.plot(datas[i][-2], datas[i][-1])
-
+    
     plt.xlabel("Distance [AU]")
     plt.ylabel("Distance [AU]")
-    plt.title("Planetary orbits for %g bodies" % n)
+    plt.title("Planetary orbits for all the planets + the sun")
+    plt.legend(["Sun","Earth", "Jupiter", "mercury","mars", "Venus","Saturn",\
+                "uranus", "Neptune", "Pluto"])
     plt.show()
 
 if __name__ == "__main__":

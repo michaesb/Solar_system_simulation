@@ -104,7 +104,7 @@ double solver::relativityFactor(int i, bool delta, double Px, double Py){
       return (1 + (delta*3*angMom_sqr)/(r_sqr*C*C));
   }
   else{
-      return 0;
+      return 1;
   }
 }
 

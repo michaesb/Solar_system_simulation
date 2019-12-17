@@ -5,4 +5,4 @@ time ./run_code
 rm run_code
 cd ..
 
-python plotting_python/nbody_plotter.py
+python plotting_python/solar_system_plot.py
