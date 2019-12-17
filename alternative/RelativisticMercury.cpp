@@ -12,9 +12,9 @@ void mercurySim(int n, double T){
     double days = 365.24; // In days
 
 
-    solver A(n, T, 1);
+    solver A(n, T);
     celestialBody sun(1,0,0,0,0);
-    celestialBody mercury(3.3e23/solarmass, 0, 12.44, 0.3075, 0);
+    celestialBody mercury(1.652e-7, 0, 12.44, 0.3075, 0);
     A.addPlanet(sun);
     A.addPlanet(mercury);
     A.stationaryVelVerlet();
@@ -28,7 +28,7 @@ int main(){
       return 0;
    } else std::cout << "test passed" << '\n';
 
-   int n = 1e6; //Number of steps
+   int n = 1e8; //Number of steps
    double T = 100;//Number of years you will plot
 
    mercurySim(n, T);

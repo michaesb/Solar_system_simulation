@@ -1,6 +1,6 @@
 #include "solver.h"
 
-#define C 63198 //Speed of light in AU
+#define C 63197.8 //Speed of light in AU/yers
 #define GM 4*M_PI*M_PI
 
 void solver::addPlanet(celestialBody planet){
@@ -240,8 +240,8 @@ void solver::stationaryVelVerlet(){
                                        + (dt/2.0)*(accel2[k][1]+ accel1[k][1]);
         }
         //writing planet values to files
-
-        if(n>1e4){
+        if(i*dt > 5){
+        if(n>1e10){
             if (i%(int)(1/((1e4)/n)) == 0){
                 for(int k = 0; k<planetNr; k++){
                     fileWriter(k, "planet"+std::to_string(k));
@@ -253,6 +253,7 @@ void solver::stationaryVelVerlet(){
                 fileWriter(k, "planet"+std::to_string(k));
             }
         }
+    }
 
     }
 }

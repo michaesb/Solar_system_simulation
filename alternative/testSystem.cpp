@@ -14,7 +14,7 @@ bool testing_orbit(int& nr){
   nr++;
   double solarmass = 1.989e30; //In kg
   double days = 365.24; // In days
-  int n = 1e4; //Number of steps
+  int n = 1e3; //Number of steps
   double T = 1;//Number of years you will plot
   double tol = 1e-8;//tolerance value
   double earthmass = 0.000003003;//In solar masses
@@ -26,8 +26,10 @@ bool testing_orbit(int& nr){
   B.addPlanet(earth);
   B.velocityVerlet();
   celestialBody earth_future = B.returnPlanet(1);
-  double xpos = earth.returnPosition()[0];
-  double ypos = earth.returnPosition()[1];
+  double xpos = earth_future.returnPosition()[0];
+  double ypos = earth_future.returnPosition()[1];
+
+  std::cout<<"anglechange = "<<atan(fabs(ypos/xpos))*3600/M_PI*180<<" arcseconds"<<std::endl;
 
 
   //speed of planet at the end of simulation
