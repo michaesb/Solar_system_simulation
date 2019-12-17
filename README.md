@@ -1,6 +1,6 @@
 
 
-##COMPUTATIONAL PHYSICS PROJECT 3
+## COMPUTATIONAL PHYSICS PROJECT 3
 
 This is a computational project in FYS-3150/4150 at UIO. In this project we will look at a model of the solar system using Velocity Verlet algorithm. The data used in the initial condition of planet objects was been taken from the NASA site http://ssd.jpl.nasa.gov/horizons.cgi#top the 29th of November of 2019. Changes in data are possible
 
@@ -16,7 +16,7 @@ If you are using Linux terminal for running the program, just run the script run
 There are different run_scripts that will create different kinds of data, but all of them will be written to a textfile in the textfiles folder. In order to avoid overwritting the data, we have had git ignore the texfiles, so they might not be seen by your editor. 
 We have 4 run_scripts in this repository: 
 -run_main: uses one core and compute one system value. A function can be uncommented to run for different Mc-cycles
-
+-3_body_problem: Plots the orbits of a 3 body system made up by Earth, Sun and Jupiter
 -begin_work.sh this is just a comfortable way of starting the atom editor and open the project description. 
 ### Prerequisites
 
