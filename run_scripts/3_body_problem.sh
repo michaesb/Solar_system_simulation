@@ -1,5 +1,5 @@
 #!/bin/bash
-cd alternative
+cd src
 g++ -O3 3_body_problem.cpp -o ./3_body -std=c++11 -lgomp
 time ./3_body
 rm 3_body

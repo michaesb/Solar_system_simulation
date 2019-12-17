@@ -1,5 +1,5 @@
 #!/bin/bash
-cd alternative
+cd src
 g++ -O3 SolarSystemSim.cpp -o run_code -std=c++11 -lgomp
 time ./run_code
 rm run_code
