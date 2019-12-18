@@ -1,6 +1,6 @@
 
 
-# COMPUTATIONAL PHYSICS PROJECT 3
+# Solar system Simulation
 
 This is a computational project in FYS-3150/4150 at UIO. In this project we will look at a model of the solar system using Velocity Verlet algorithm. The data used in the initial condition of planet objects was been taken from the NASA site http://ssd.jpl.nasa.gov/horizons.cgi#top the 29th of November of 2019. Changes in data are possible
 
