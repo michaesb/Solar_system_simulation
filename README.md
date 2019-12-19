@@ -13,12 +13,12 @@ If you are using Linux terminal for running the program, just run the script run
 
 ##### ./run_scripts/run_main.sh
 
-There are different run_scripts that will create different kinds of data, but all of them will be written to a textfile in the textfiles folder. In order to avoid overwritting the data, we have had git ignore the texfiles, so they might not be seen by your editor. 
-We have 4 run_scripts in this repository: 
+There are different run_scripts that will create different kinds of data, but all of them will be written to a textfile in the textfiles folder. In order to avoid overwritting the data, we have had git ignore the texfiles, so they might not be seen by your editor.
+We have 4 run_scripts in this repository:
 ###### run_main: Uses one core and compute one system value. A function can be uncommented to run for different Mc-cycles.
 ###### mark_1_run.sh: Runs the functions and returns text files with the data.
 ###### 3_body_problem: Plots the orbits of a 3 body system made up by Earth, Sun (static) and Jupiter.
-###### begin_work.sh: This is just a comfortable way of starting the atom editor and open the project description. 
+###### begin_work.sh: This is just a comfortable way of starting the atom editor and open the project description.
 ###### plotting.sh: Runs and plots the orbit of the Earth with Euler Forward and Velocity Verlet.
 ###### solar_system_sim.sh: Simulates all major celestial bodies in the solar system with a dynamic sun.
 ###### perihelion_run.sh: Generates 2 txt files containing position and velocity of mercury and the sun using a relativistic gravity. In its current state, it will generate 2 txt files of size 4 Gb.
@@ -51,7 +51,7 @@ The tests are run automatically by the run_main.sh. You will know the tests pass
 
 The tests will check two things:
 
-Circular orbit test 
+Circular orbit test
 -Checks that a celestial body which we know has a circular orbit returns (aproximately) to the starting point after one period.
 -Checks that for a celestial body, the momentum and potential energy of the celestial body are conserved (aproximately since the numerical methods do have a "loss" in energy)
 Both parameters will ensure a stability of the orbits.
@@ -59,6 +59,13 @@ Both parameters will ensure a stability of the orbits.
 Gravity function
 -Checks that the gravity function returns expected values for a celestial body
 This will ensure we get reasonable results for gravity between bodies
+
+## Report
+
+[FYS_Project5_Report.pdf](https://github.com/michaesb/Solar_system_simulation/FYS_Project5_Report.pdf) - Our report for the project
+
+
+
 
 
 ## Authors

@@ -11,7 +11,7 @@ Vx,Vy,Px,Py = obj()
 # plt.plot(Px,Py)
 plt.plot(Px,Py)
 
-plt.title('Verlet with a circular orbit. dt = '+str(1./len(Vx)))
+plt.title('Verlet with a circular orbit',size=22)
 
 plt.ylabel('y')
 plt.xlabel('x')

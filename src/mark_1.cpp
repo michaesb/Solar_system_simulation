@@ -15,7 +15,7 @@
 
 double accel(double r, double Pos){
   //d²X/dt²
-  return -(4 * M_PI * M_PI)*Pos/ (r*r*r);
+  return -(4 * M_PI * M_PI)*Pos/ (r*r*r*r);
 }
 
 struct storing_vectors{
@@ -74,25 +74,25 @@ storing_vectors eulerForward(double initialVx, double initialVy, double Posx, do
 
 int main(){
 
-  int n = 1e4;
-  double Time = 1; //year
+  int n = 1e6;
+  double Time = 10; //year
   double vx_initial = 0;
-  double vy_initial = 2*M_PI; //escape
+  double vy_initial = 2*M_PI*0.99; //escape
   // double vy_initial = 2*M_PI; //orbit
   double px_initial = 1;
   double py_initial = 0;
 
 
-  storing_vectors eul_vel_pos = eulerForward(vx_initial,vy_initial,
-                                             px_initial,py_initial,n,Time);
-  write_to_file_vector(eul_vel_pos.Vx,eul_vel_pos.Vy,
-                       eul_vel_pos.Px,eul_vel_pos.Py,
-                       n, "euler_planet");
+  //storing_vectors eul_vel_pos = eulerForward(vx_initial,vy_initial,
+  //                                           px_initial,py_initial,n,Time);
+  // write_to_file_vector(eul_vel_pos.Vx,eul_vel_pos.Vy,
+  //                       eul_vel_pos.Px,eul_vel_pos.Py,
+  //                      n, "euler_planet");
   storing_vectors vec_vel_pos = velocityVerlet(vx_initial,vy_initial,
-                                              px_initial,py_initial,n,Time);
+                                               px_initial,py_initial,n,Time);
   write_to_file_vector(vec_vel_pos.Vx,vec_vel_pos.Vy,
                        vec_vel_pos.Px,vec_vel_pos.Py,
-                       n, "verlet_planet");
+                       n, "verlet_planet_near_escape");
 
 
 }

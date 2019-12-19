@@ -22,30 +22,33 @@ def momentum(vx, vy, px, py):
     return np.abs(m_earth*(px*vy - py*vx))
 
 
-obj = FileReader('./textfiles/euler_planet.txt')
+obj = FileReader('./textfiles/verlet_planet.txt')
 Vx,Vy,Px,Py = obj()
 
-"""
-energies = np.zeros_like(Vx)
+def plot_energy():
+    energies = np.zeros_like(Vx)
 
-for i in range(len(Vx)):
-    energies[i] = energy(Vx[i], Vy[i], Px[i], Py[i])
+    for i in range(len(Vx)):
+        energies[i] = energy(Vx[i], Vy[i], Px[i], Py[i])
 
-times = np.linspace(0, 100, len(Vx))
-# plt.xkcd()
+    times = np.linspace(0, 100, len(Vx))
+    # plt.xkcd()
 
-plt.plot(times, energies)
-plt.title("Mechanical energy of Euler for 100 years")
-plt.xlabel("time [years]")
-plt.ylabel("Total Mechanical Energy [$M_O$ AU$^2$ Yr$^-2$] ")
-plt.show()
-"""
+    plt.plot(times, energies)
+    plt.title("Mechanical energy of Verlet for 100 years", size=24)
+    plt.xlabel("time [years]", size =20)
+    plt.ylabel("Total Mechanical Energy [$M_O$ AU$^2$ Yr$^-2$] ", size =20)
+    plt.show()
 
-momentums = momentum(Vx, Vy, Px, Py)
-times = np.linspace(0, 100, len(Vx))
+def plot_momentum():
+    momentums = momentum(Vx, Vy, Px, Py)
+    times = np.linspace(0, 100, len(Vx))
 
-plt.plot(times, momentums)
-plt.xlabel("Time [years]")
-plt.ylabel("Momentum [M$_O$ AU$^2$ years$^{-1}$]")
-plt.title("Momentum of earth using Forward Euler for 100 years")
-plt.show()
+    plt.plot(times, momentums)
+    plt.xlabel("Time [years]", size =20)
+    plt.ylabel("Momentum [M$_O$ AU$^2$ years$^{-1}$]",size = 20)
+    plt.title("Momentum of earth using Verlet for 100 years", size=24)
+    plt.show()
+
+plot_energy()
+plot_momentum()
